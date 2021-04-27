@@ -1,0 +1,7 @@
+{
+    "[markdown]": {
+        "breadcrumbs.showEnums": true,
+        "editor.wordWrap": "on",
+        "editor.quickSuggestions": false
+    }
+}
