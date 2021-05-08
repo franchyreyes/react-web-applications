@@ -1,4 +1,30 @@
-import { CREATE_TODO, MARK_COMPLETED_TODO, REMOVE_TODO } from '../actions/TodoActions'
+import {
+    CREATE_TODO,
+    MARK_COMPLETED_TODO,
+    REMOVE_TODO,
+    LOAD_TODOS_FAILURE,
+    LOAD_TODOS_IN_PROGRESS,
+    LOAD_TODOS_SUCCESS
+} from '../actions/TodoActions'
+
+
+export const isLoading = (state = false, action) => {
+    const { type } = action;
+
+    switch (type) {
+        case LOAD_TODOS_IN_PROGRESS:
+            {
+                return true;
+            }
+        case LOAD_TODOS_FAILURE:
+        case LOAD_TODOS_SUCCESS:
+            {
+                return false;
+            }
+        default:
+            return state;
+    }
+};
 
 export const todos = (state = [], action) => {
     const { type, payload } = action;
@@ -6,29 +32,32 @@ export const todos = (state = [], action) => {
     switch (type) {
 
         case CREATE_TODO: {
-            const { text } = payload;
-            const newTodo = {
-                text,
-                isCompleted: false
-            }
-            return state.concat(newTodo);
+            const { todo } = payload;
+            return state.concat(todo);
         }
         case REMOVE_TODO: {
-
-            return state.filter(todo => todo.text !== payload.text);
+            const { todo: removedTodo } = payload;
+            return state.filter(todo => todo.id !== removedTodo.id);
         }
         case MARK_COMPLETED_TODO: {
-            const { text } = payload;
+            const { todo: updateTodo } = payload;
             return state.map(
                 todo => {
-                    if (todo.text === text) {
-                        return { ...todo, isCompleted: true };
+                    if (todo.id === updateTodo.id) {
+                        return updateTodo;
+                        //return { ...todo, isCompleted: updateTodo.isCompleted };
                     }
                     return todo;
                 }
             )
         }
 
+        case LOAD_TODOS_SUCCESS: {
+            const { todos } = payload;
+            return todos;
+        }
+        case LOAD_TODOS_FAILURE:
+        case LOAD_TODOS_IN_PROGRESS:
         default:
             return state;
     }
