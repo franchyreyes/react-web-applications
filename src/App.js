@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components'
 import { hot } from 'react-hot-loader'
 import TodoList from './components/todos/TodoList.js';
+import PlayerList from './components/players/PlayerList'
 
 const AppContainer = styled.div`
     margin: 1rem;
@@ -12,7 +13,7 @@ const AppContainer = styled.div`
 `;
 const App = () => (
     <AppContainer>
-        <TodoList />
+        <PlayerList></PlayerList>
     </AppContainer>
 
 );
