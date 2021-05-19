@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components'
 import PlayerListItem from './PlayerListItem'
 import { connect } from 'react-redux';
-import { getPlayersOrderByPoint } from './selectors';
+import { getPlayersLoading, getPlayersOrderByPoint } from './selectors';
 import { loadPlayers, removePlayerRequest } from '../../thunks/PlayerThunk';
+import Loading from '../loading/loading';
 
 
 const PlayerContainer = styled.div`
@@ -20,13 +21,13 @@ const PlayerContainer = styled.div`
       }
 `;
 
-const PlayerList = ({ playersOrderByPoint, startLoadingPlayer, onDeletePlayer }) => {
+const PlayerList = ({ playersOrderByPoint, startLoadingPlayer, onDeletePlayer, isLoading }) => {
     useEffect(() => {
         startLoadingPlayer();
     }, []);
 
 
-    return playersOrderByPoint.map(
+    const content = playersOrderByPoint.map(
         player =>
 
             <PlayerContainer key={player.backNumber + 1}>
@@ -34,11 +35,14 @@ const PlayerList = ({ playersOrderByPoint, startLoadingPlayer, onDeletePlayer })
             </PlayerContainer>
 
     );
+
+    return isLoading ? <Loading /> : content;
 }
 
 
 const mapStateToProps = state => ({
     playersOrderByPoint: getPlayersOrderByPoint(state),
+    isLoading: getPlayersLoading(state),
 });
 
 const mapDispatchToProps = dispatch => ({
