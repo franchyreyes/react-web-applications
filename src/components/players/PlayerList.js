@@ -29,7 +29,6 @@ const PlayerList = ({ playersOrderByPoint, startLoadingPlayer, onDeletePlayer, i
 
     const content = playersOrderByPoint.map(
         player =>
-
             <PlayerContainer key={player.backNumber + 1}>
                 <PlayerListItem player={player} onDeletePlayer={onDeletePlayer} />
             </PlayerContainer>
