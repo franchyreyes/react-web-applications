@@ -1,7 +1,7 @@
 {
-  "name": "ecosystem-react",
+  "name": "project-react",
   "version": "1.0.0",
-  "description": "",
+  "description": "Building Modern web applications",
   "main": "index.js",
   "scripts": {
     "dev": "npx webpack-dev-server --mode development",
@@ -9,7 +9,7 @@
     "build": "npx webpack --mode development"
   },
   "keywords": [],
-  "author": "",
+  "author": "Franchy Reyes",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.13.14",
@@ -22,11 +22,13 @@
     "chai": "^4.3.4",
     "css-loader": "^5.2.2",
     "fetch-mock": "^9.11.0",
+    "file-loader": "^6.2.0",
     "mocha": "^8.4.0",
     "node-fetch": "^2.6.1",
     "react-hot-loader": "^4.13.0",
     "sinon": "^10.0.0",
     "style-loader": "^2.0.0",
+    "url-loader": "^4.1.1",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.1"
@@ -36,6 +38,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.4",
+    "react-router-dom": "^5.2.0",
     "redux": "^4.1.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-persist": "^6.0.0",
